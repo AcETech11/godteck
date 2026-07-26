@@ -1,5 +1,6 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 // Match public routes
 const isPublicRoute = createRouteMatcher([
@@ -32,8 +33,23 @@ export default clerkMiddleware(async (auth, req) => {
     const role = publicMetadata?.role || metadata?.role;
 
     if (role !== "admin") {
-      // Return 403 Forbidden
-      return new NextResponse("Forbidden", { status: 403 });
+      // Fallback check via Supabase profiles table
+      try {
+        const supabase = createAdminClient();
+        const { data: profile, error } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", session.userId)
+          .single();
+
+        if (error || profile?.role !== "admin") {
+          // Return 403 Forbidden
+          return new NextResponse("Forbidden", { status: 403 });
+        }
+      } catch (err) {
+        console.error("Error checking admin status in middleware:", err);
+        return new NextResponse("Forbidden", { status: 403 });
+      }
     }
   }
 
