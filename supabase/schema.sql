@@ -7,9 +7,9 @@ create type public.post_status as enum ('pending', 'approved', 'rejected', 'flag
 create type public.waitlist_status as enum ('pending', 'approved', 'rejected');
 
 -- Create Profiles Table
--- This table maps to Supabase's auth.users
+-- This table maps to Clerk users (id is text)
 create table public.profiles (
-    id uuid references auth.users(id) on delete cascade primary key,
+    id text primary key,
     email text not null unique,
     full_name text,
     avatar_url text,
@@ -30,7 +30,7 @@ create table public.waitlist (
 -- Create Posts Table
 create table public.posts (
     id uuid primary key default gen_random_uuid(),
-    author_id uuid references public.profiles(id) on delete cascade not null,
+    author_id text references public.profiles(id) on delete cascade not null,
     title text not null,
     content text not null,
     category text not null,
@@ -58,8 +58,8 @@ using (true);
 -- Users can update their own profile
 create policy "Allow users to update own profile"
 on public.profiles for update
-using (auth.uid() = id)
-with check (auth.uid() = id);
+using (auth.uid()::text = id)
+with check (auth.uid()::text = id);
 
 -- ==========================================
 -- Waitlist RLS Policies
@@ -74,14 +74,14 @@ with check (true);
 create policy "Allow admins to read waitlist"
 on public.waitlist for select
 using (
-    (select role from public.profiles where id = auth.uid()) = 'admin'
+    (select role from public.profiles where id = auth.uid()::text) = 'admin'
 );
 
 -- Only admins can update waitlist entries
 create policy "Allow admins to update waitlist"
 on public.waitlist for update
 using (
-    (select role from public.profiles where id = auth.uid()) = 'admin'
+    (select role from public.profiles where id = auth.uid()::text) = 'admin'
 );
 
 -- ==========================================
@@ -97,34 +97,34 @@ using (status = 'approved');
 create policy "Allow authenticated users to insert pending posts"
 on public.posts for insert
 with check (
-    auth.uid() = author_id
+    auth.uid()::text = author_id
     and status = 'pending'
 );
 
 -- Author can read their own posts regardless of status
 create policy "Allow authors to read own posts"
 on public.posts for select
-using (auth.uid() = author_id);
+using (auth.uid()::text = author_id);
 
 -- Admins can read ALL posts
 create policy "Allow admins to read all posts"
 on public.posts for select
 using (
-    (select role from public.profiles where id = auth.uid()) = 'admin'
+    (select role from public.profiles where id = auth.uid()::text) = 'admin'
 );
 
 -- Admins can update ALL posts
 create policy "Allow admins to update all posts"
 on public.posts for update
 using (
-    (select role from public.profiles where id = auth.uid()) = 'admin'
+    (select role from public.profiles where id = auth.uid()::text) = 'admin'
 );
 
 -- Admins can delete ALL posts
 create policy "Allow admins to delete all posts"
 on public.posts for delete
 using (
-    (select role from public.profiles where id = auth.uid()) = 'admin'
+    (select role from public.profiles where id = auth.uid()::text) = 'admin'
 );
 
 -- ==========================================
@@ -144,22 +144,5 @@ create trigger update_posts_updated_at
     before update on public.posts
     for each row execute function public.handle_update_timestamp();
 
--- Automatic profile generation when a user signs up
-create or replace function public.handle_new_user()
-returns trigger as $$
-begin
-    insert into public.profiles (id, email, full_name, avatar_url, role)
-    values (
-        new.id,
-        new.email,
-        coalesce(new.raw_user_meta_data->>'full_name', ''),
-        coalesce(new.raw_user_meta_data->>'avatar_url', ''),
-        'member'
-    );
-    return new;
-end;
-$$ language plpgsql security definer;
-
-create trigger on_auth_user_created
-    after insert on auth.users
-    for each row execute function public.handle_new_user();
+-- Note: Automatic profile generation when a user signs up via Supabase Auth
+-- has been disabled as we are now using Clerk webhooks to sync profiles.
