@@ -5,22 +5,433 @@
 ▲ Next.js 16.2.12 (Turbopack)
 - Local:         http://localhost:3000
 - Network:       http://192.168.0.2:3000
-✓ Ready in 553ms
+✓ Ready in 535ms
 ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
 
 Clerk - DEPRECATION WARNING: "createRouteMatcher" is deprecated and will be removed in the next major release.
 Use resource-based auth checks instead. Move auth checks into each page, layout, API route, or Server Function that accesses protected data. Middleware-based auth checks rely on path matching, which can diverge from how Next.js routes requests and leave protected resources reachable. For a migration guide, see: https://clerk.com/docs/guides/development/upgrading/upgrade-guides/migrate-from-create-route-matcher
 ○ Compiling / ...
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
 
 [35m
 [Clerk]:[0m You are running in keyless mode.
-You can [35mclaim your keys[0m by visiting https://dashboard.clerk.com/apps/claim?framework=nextjs&token=6fs8pgzkiatvcoz9isgsib8i1voxw88cg5a34frg&return_url=http%3A%2F%2Flocalhost%3A3000%2F
+You can [35mclaim your keys[0m by visiting https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu&return_url=http%3A%2F%2Flocalhost%3A3000%2F
 
- GET / 200 in 10.8s (next.js: 8.8s, proxy.ts: 383ms, application-code: 1593ms)
-[browser] Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://ready-bat-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
- GET / 200 in 152ms (next.js: 7ms, proxy.ts: 80ms, application-code: 66ms)
- POST / 303 in 306ms (next.js: 8ms, proxy.ts: 36ms, application-code: 262ms)
-  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2bcouPTG5ljecWDJRtiTdpXI2/instances/ins_3H2bcoE10VTrbDhF9UvCUHgfv05/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=6fs8pgzkiatvcoz9isgsib8i1voxw88cg5a34frg","...":"3 items not stringified"}) in 15ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
- GET / 200 in 41ms (next.js: 7ms, proxy.ts: 18ms, application-code: 16ms)
- GET / 200 in 72ms (next.js: 7ms, proxy.ts: 15ms, application-code: 49ms)
+ GET / 200 in 8.5s (next.js: 6.6s, proxy.ts: 179ms, application-code: 1779ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 148ms (next.js: 6ms, proxy.ts: 28ms, application-code: 115ms)
+ POST / 303 in 232ms (next.js: 15ms, proxy.ts: 16ms, application-code: 200ms)
+  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2fhqKNmCpo4Ht0zEn6IjjGroE/instances/ins_3H2fhk9YXDNnTBIeEIakKT8NFd8/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu","...":"3 items not stringified"}) in 9ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
+[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://up-doberman-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
+ GET / 200 in 45ms (next.js: 8ms, proxy.ts: 22ms, application-code: 15ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 65ms (next.js: 6ms, proxy.ts: 10ms, application-code: 49ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 294ms (next.js: 20ms, proxy.ts: 16ms, application-code: 259ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 122ms (next.js: 9ms, proxy.ts: 10ms, application-code: 103ms)
+ POST / 303 in 186ms (next.js: 7ms, proxy.ts: 9ms, application-code: 171ms)
+  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2fhqKNmCpo4Ht0zEn6IjjGroE/instances/ins_3H2fhk9YXDNnTBIeEIakKT8NFd8/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu","...":"3 items not stringified"}) in 9ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
+[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://up-doberman-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
+ GET / 200 in 33ms (next.js: 8ms, proxy.ts: 10ms, application-code: 16ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 70ms (next.js: 5ms, proxy.ts: 10ms, application-code: 55ms)
+✓ Compiled in 86ms
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 451ms (next.js: 24ms, proxy.ts: 17ms, application-code: 410ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 143ms (next.js: 4ms, proxy.ts: 11ms, application-code: 128ms)
+ POST / 303 in 230ms (next.js: 13ms, proxy.ts: 18ms, application-code: 200ms)
+  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2fhqKNmCpo4Ht0zEn6IjjGroE/instances/ins_3H2fhk9YXDNnTBIeEIakKT8NFd8/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu","...":"3 items not stringified"}) in 6ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
+[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://up-doberman-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
+ GET / 200 in 26ms (next.js: 4ms, proxy.ts: 9ms, application-code: 13ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 86ms (next.js: 4ms, proxy.ts: 13ms, application-code: 68ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 144ms (next.js: 5ms, proxy.ts: 6ms, application-code: 133ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 140ms (next.js: 9ms, proxy.ts: 19ms, application-code: 112ms)
+ POST / 303 in 230ms (next.js: 14ms, proxy.ts: 19ms, application-code: 197ms)
+  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2fhqKNmCpo4Ht0zEn6IjjGroE/instances/ins_3H2fhk9YXDNnTBIeEIakKT8NFd8/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu","...":"3 items not stringified"}) in 11ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
+[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://up-doberman-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
+ GET / 200 in 22ms (next.js: 4ms, proxy.ts: 11ms, application-code: 7ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 82ms (next.js: 5ms, proxy.ts: 9ms, application-code: 69ms)
+✓ Compiled in 114ms
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 836ms (next.js: 16ms, proxy.ts: 11ms, application-code: 809ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 96ms (next.js: 4ms, proxy.ts: 10ms, application-code: 83ms)
+ POST / 303 in 145ms (next.js: 6ms, proxy.ts: 14ms, application-code: 125ms)
+  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2fhqKNmCpo4Ht0zEn6IjjGroE/instances/ins_3H2fhk9YXDNnTBIeEIakKT8NFd8/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu","...":"3 items not stringified"}) in 6ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
+ GET / 200 in 25ms (next.js: 3ms, proxy.ts: 15ms, application-code: 7ms)
+[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://up-doberman-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 69ms (next.js: 4ms, proxy.ts: 16ms, application-code: 49ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 177ms (next.js: 4ms, proxy.ts: 5ms, application-code: 168ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 97ms (next.js: 4ms, proxy.ts: 10ms, application-code: 82ms)
+ POST / 303 in 141ms (next.js: 7ms, proxy.ts: 8ms, application-code: 127ms)
+  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2fhqKNmCpo4Ht0zEn6IjjGroE/instances/ins_3H2fhk9YXDNnTBIeEIakKT8NFd8/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu","...":"3 items not stringified"}) in 7ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
+ GET / 200 in 19ms (next.js: 4ms, proxy.ts: 9ms, application-code: 7ms)
+[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://up-doberman-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 70ms (next.js: 6ms, proxy.ts: 10ms, application-code: 54ms)
+✓ Compiled in 40ms
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 257ms (next.js: 11ms, proxy.ts: 10ms, application-code: 235ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 99ms (next.js: 4ms, proxy.ts: 13ms, application-code: 82ms)
+ POST / 303 in 154ms (next.js: 10ms, proxy.ts: 9ms, application-code: 136ms)
+  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2fhqKNmCpo4Ht0zEn6IjjGroE/instances/ins_3H2fhk9YXDNnTBIeEIakKT8NFd8/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu","...":"3 items not stringified"}) in 7ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
+ GET / 200 in 22ms (next.js: 4ms, proxy.ts: 9ms, application-code: 10ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://up-doberman-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
+ GET / 200 in 66ms (next.js: 4ms, proxy.ts: 9ms, application-code: 52ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 140ms (next.js: 7ms, proxy.ts: 8ms, application-code: 126ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+ GET / 200 in 101ms (next.js: 6ms, proxy.ts: 14ms, application-code: 81ms)
+ POST / 303 in 145ms (next.js: 9ms, proxy.ts: 7ms, application-code: 129ms)
+  └─ ƒ syncKeylessConfigAction({"apiKeysUrl":"https://dashboard.clerk.com/apps/app_3H2fhqKNmCpo4Ht0zEn6IjjGroE/instances/ins_3H2fhk9YXDNnTBIeEIakKT8NFd8/api-keys","claimUrl":"https://dashboard.clerk.com/apps/claim?framework=nextjs&token=kaadlvxvgvb3dif0rna2duy5oyqtak45l5kh2rpu","...":"3 items not stringified"}) in 6ms node_modules/@clerk/nextjs/dist/esm-router/keyless-actions.js
+ GET / 200 in 20ms (next.js: 4ms, proxy.ts: 9ms, application-code: 6ms)
+Database connection failure: Error: Your project's URL and Key are required to create a Supabase client!
+
+Check your Supabase project's API settings to find these values
+
+https://supabase.com/dashboard/project/_/settings/api
+    at <unknown> (https://supabase.com/dashboard/project/_/settings/api)
+    at createClient (lib/supabase/server.ts:7:28)
+    at async Home (src/app/page.tsx:61:22)
+   5 |   const cookieStore = await cookies()
+   6 |
+>  7 |   return createServerClient(
+     |                            ^
+   8 |     process.env.NEXT_PUBLIC_SUPABASE_URL!,
+   9 |     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  10 |     {
+[browser] Clerk: Clerk has been loaded with development keys. Development instances have strict usage limits and should not be used when deploying your application to production. Learn more: https://clerk.com/docs/deployments/overview (https://up-doberman-60.clerk.accounts.dev/npm/@clerk/clerk-js@6/dist/clerk.browser.js:12:6133)
+ GET / 200 in 55ms (next.js: 5ms, proxy.ts: 8ms, application-code: 42ms)
