@@ -3,6 +3,7 @@
 import { auth } from "@clerk/nextjs/server"
 import { createAdminClient } from "@/lib/supabase/admin"
 import { revalidatePath } from "next/cache"
+import { sendPostStatusNotification } from "@/lib/email/notifications"
 
 export interface ActionResponse {
   success: boolean
@@ -48,7 +49,11 @@ async function checkIsAdmin(): Promise<boolean> {
 /**
  * Approves a pending post, updates status to 'approved'
  */
-export async function approvePost(postId: string): Promise<ActionResponse> {
+export async function approvePost(
+  postId: string,
+  authorEmail: string,
+  postTitle: string
+): Promise<ActionResponse> {
   try {
     const isAdmin = await checkIsAdmin()
     if (!isAdmin) {
@@ -71,6 +76,20 @@ export async function approvePost(postId: string): Promise<ActionResponse> {
       return { success: false, error: updateError.message || "Failed to update status." }
     }
 
+    // Call sendPostStatusNotification resiliently
+    try {
+      const emailRes = await sendPostStatusNotification({
+        userEmail: authorEmail,
+        postTitle,
+        status: "approved",
+      })
+      if (!emailRes.success) {
+        console.error("Failed to send post status notification email:", emailRes.error)
+      }
+    } catch (emailErr) {
+      console.error("An unexpected error occurred while sending approval notification email:", emailErr)
+    }
+
     // Revalidate paths
     revalidatePath("/admin/posts")
     revalidatePath("/")
@@ -84,7 +103,12 @@ export async function approvePost(postId: string): Promise<ActionResponse> {
 /**
  * Rejects a pending post, updates status to 'rejected' and saves rejection reason
  */
-export async function rejectPost(postId: string, reason?: string): Promise<ActionResponse> {
+export async function rejectPost(
+  postId: string,
+  authorEmail: string,
+  postTitle: string,
+  reason: string
+): Promise<ActionResponse> {
   try {
     const isAdmin = await checkIsAdmin()
     if (!isAdmin) {
@@ -105,6 +129,21 @@ export async function rejectPost(postId: string, reason?: string): Promise<Actio
 
     if (updateError) {
       return { success: false, error: updateError.message || "Failed to reject post." }
+    }
+
+    // Call sendPostStatusNotification resiliently
+    try {
+      const emailRes = await sendPostStatusNotification({
+        userEmail: authorEmail,
+        postTitle,
+        status: "rejected",
+        rejectionReason: reason,
+      })
+      if (!emailRes.success) {
+        console.error("Failed to send post status notification email:", emailRes.error)
+      }
+    } catch (emailErr) {
+      console.error("An unexpected error occurred while sending rejection notification email:", emailErr)
     }
 
     // Revalidate paths
