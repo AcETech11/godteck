@@ -57,15 +57,15 @@ export function PostModerationClient({ initialPosts }: PostModerationClientProps
     setPosts(initialPosts)
   }, [initialPosts])
 
-  const handleApprove = async (postId: string) => {
+  const handleApprove = async (postId: string, authorEmail: string, postTitle: string) => {
     setProcessingId(postId)
     try {
-      const res = await approvePost(postId)
+      const res = await approvePost(postId, authorEmail, postTitle)
       if (res.success) {
         setPosts((prev) => prev.filter((p) => p.id !== postId))
         toast.add({
           title: "Post Approved",
-          description: "The post was successfully approved and published.",
+          description: "Post approved! Author has been notified.",
           type: "success",
         })
         if (selectedPost?.id === postId) {
@@ -94,19 +94,23 @@ export function PostModerationClient({ initialPosts }: PostModerationClientProps
   const handleApproveFromDialog = async () => {
     if (!selectedPost) return
     setDialogActionLoading("approve")
-    await handleApprove(selectedPost.id)
+    await handleApprove(
+      selectedPost.id,
+      selectedPost.profiles?.email || "",
+      selectedPost.title
+    )
     setDialogActionLoading(null)
   }
 
-  const handleReject = async (postId: string, reason?: string) => {
+  const handleReject = async (postId: string, authorEmail: string, postTitle: string, reason: string) => {
     setProcessingId(postId)
     try {
-      const res = await rejectPost(postId, reason)
+      const res = await rejectPost(postId, authorEmail, postTitle, reason)
       if (res.success) {
         setPosts((prev) => prev.filter((p) => p.id !== postId))
         toast.add({
           title: "Post Rejected",
-          description: "The post was successfully rejected.",
+          description: "Post rejected! Author has been notified.",
           type: "success",
         })
         if (selectedPost?.id === postId) {
@@ -135,7 +139,12 @@ export function PostModerationClient({ initialPosts }: PostModerationClientProps
   const handleRejectFromDialog = async () => {
     if (!selectedPost) return
     setDialogActionLoading("reject")
-    await handleReject(selectedPost.id, rejectionReason)
+    await handleReject(
+      selectedPost.id,
+      selectedPost.profiles?.email || "",
+      selectedPost.title,
+      rejectionReason
+    )
     setDialogActionLoading(null)
   }
 
@@ -225,14 +234,14 @@ export function PostModerationClient({ initialPosts }: PostModerationClientProps
                             size="sm"
                             className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-sm transition-colors text-xs flex items-center gap-1 h-8 px-3"
                             disabled={isProcessing}
-                            onClick={() => handleApprove(post.id)}
+                            onClick={() => handleApprove(post.id, post.profiles?.email || "", post.title)}
                           >
                             {isProcessing ? (
                               <Loader2 className="h-3.5 w-3.5 animate-spin" />
                             ) : (
                               <CheckCircle2 className="h-3.5 w-3.5" />
                             )}
-                            <span>Approve</span>
+                            <span>{isProcessing ? "Processing..." : "Approve"}</span>
                           </Button>
                           <Button
                             size="sm"
@@ -296,14 +305,14 @@ export function PostModerationClient({ initialPosts }: PostModerationClientProps
                         size="sm"
                         className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-sm text-xs flex items-center justify-center gap-1 h-8"
                         disabled={isProcessing}
-                        onClick={() => handleApprove(post.id)}
+                        onClick={() => handleApprove(post.id, post.profiles?.email || "", post.title)}
                       >
                         {isProcessing ? (
                           <Loader2 className="h-3.5 w-3.5 animate-spin" />
                         ) : (
                           <CheckCircle2 className="h-3.5 w-3.5" />
                         )}
-                        <span>Approve</span>
+                        <span>{isProcessing ? "Processing..." : "Approve"}</span>
                       </Button>
                       <Button
                         size="sm"
@@ -397,7 +406,7 @@ export function PostModerationClient({ initialPosts }: PostModerationClientProps
                   {dialogActionLoading === "reject" ? (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
                   ) : null}
-                  <span>Confirm Reject</span>
+                  <span>{dialogActionLoading === "reject" ? "Processing..." : "Confirm Reject"}</span>
                 </Button>
                 <Button
                   onClick={handleApproveFromDialog}
@@ -407,7 +416,7 @@ export function PostModerationClient({ initialPosts }: PostModerationClientProps
                   {dialogActionLoading === "approve" ? (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
                   ) : null}
-                  <span>Confirm Approve</span>
+                  <span>{dialogActionLoading === "approve" ? "Processing..." : "Confirm Approve"}</span>
                 </Button>
               </DialogFooter>
             </>
