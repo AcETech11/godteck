@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { UserButton, useUser, useAuth } from "@clerk/nextjs";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Menu, LayoutDashboard, ShieldAlert } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
   const { isSignedIn, isLoaded } = useAuth();
@@ -62,22 +69,35 @@ export function Navbar() {
               </>
             ) : (
               <div className="flex items-center gap-4">
-                {/* Mobile links */}
-                <div className="md:hidden flex items-center space-x-4">
-                  <Link
-                    href="/dashboard"
-                    className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                  >
-                    Dashboard
-                  </Link>
-                  {isAdmin && (
-                    <Link
-                      href="/admin"
-                      className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                    >
-                      Admin
-                    </Link>
-                  )}
+                {/* Mobile Hamburger Dropdown Menu */}
+                <div className="md:hidden">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger className="flex h-9 w-9 items-center justify-center rounded-md border border-transparent hover:bg-zinc-100 dark:hover:bg-zinc-850 text-zinc-600 dark:text-zinc-400">
+                      <Menu className="h-5 w-5" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-48 mt-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-1.5 shadow-md">
+                      <DropdownMenuItem className="p-0">
+                        <Link
+                          href="/dashboard"
+                          className="flex items-center gap-2.5 w-full px-3 py-2 text-sm font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-md transition-colors"
+                        >
+                          <LayoutDashboard className="h-4 w-4 text-zinc-500 dark:text-zinc-400" />
+                          Dashboard
+                        </Link>
+                      </DropdownMenuItem>
+                      {isAdmin && (
+                        <DropdownMenuItem className="p-0">
+                          <Link
+                            href="/admin"
+                            className="flex items-center gap-2.5 w-full px-3 py-2 text-sm font-medium text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-md transition-colors"
+                          >
+                            <ShieldAlert className="h-4 w-4 text-zinc-500 dark:text-zinc-400" />
+                            Admin Portal
+                          </Link>
+                        </DropdownMenuItem>
+                      )}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
 
                 <UserButton>
