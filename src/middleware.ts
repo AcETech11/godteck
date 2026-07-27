@@ -21,15 +21,10 @@ export default clerkMiddleware(async (auth, req) => {
   const isPublic = isPublicRoute(req);
   const isAdmin = isAdminRoute(req);
 
-  // If the route is public and is not an admin route, skip checks and skip calling auth()
-  if (isPublic && !isAdmin) {
-    return;
-  }
-
-  const session = await auth();
-
-  // 1. Admin route protection
+  // 1. Admin route protection - ONLY runs when requesting an admin route
   if (isAdmin) {
+    const session = await auth();
+
     // If not logged in, redirect to sign-in
     if (!session.userId) {
       return session.redirectToSignIn({ returnBackUrl: req.url });
