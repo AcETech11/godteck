@@ -18,10 +18,13 @@ const isAdminRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
-  const session = await auth();
+  const isPublic = isPublicRoute(req);
+  const isAdmin = isAdminRoute(req);
 
-  // 1. Admin route protection
-  if (isAdminRoute(req)) {
+  // 1. Admin route protection - ONLY runs when requesting an admin route
+  if (isAdmin) {
+    const session = await auth();
+
     // If not logged in, redirect to sign-in
     if (!session.userId) {
       return session.redirectToSignIn({ returnBackUrl: req.url });
@@ -54,7 +57,7 @@ export default clerkMiddleware(async (auth, req) => {
   }
 
   // 2. Private route protection (e.g. /dashboard/* or anything not public)
-  if (!isPublicRoute(req)) {
+  if (!isPublic) {
     await auth.protect();
   }
 });
